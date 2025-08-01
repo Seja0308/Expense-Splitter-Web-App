@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTech Expense Splitter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>FinTech Expense Splitter</h1>
+    <p>Smartly track, split, and visualize group expenses</p>
+  </header>
+
+  <main class="container">
+    <!-- Add Participants -->
+    <section class="card">
+      <h2>Add Participants</h2>
+      <input type="text" id="participantName" placeholder="Enter name">
+      <button onclick="addParticipant()">Add</button>
+      <ul id="participantList"></ul>
+    </section>
+
+    <!-- Add Expenses -->
+    <section class="card">
+      <h2>Add Expense</h2>
+      <select id="payerSelect"></select>
+      <select id="currencySelect">
+          <option value="₹">INR (₹)</option>
+          <option value="$">USD ($)</option>
+          <option value="€">EUR (€)</option>
+          <option value="£">GBP (£)</option>
+      </select>
+      <input type="number" id="amount" placeholder="Amount">
+
+      <!-- Dropdown for Description -->
+      <select id="description">
+        <option value="" disabled selected>Select Description</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Snacks">Snacks</option>
+        <option value="Taxi Fare">Taxi Fare</option>
+        <option value="Hotel">Hotel</option>
+        <option value="Shopping Mall">Shopping Mall</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- FIXED: Default option -->
+      <select id="categorySelect">
+        <option value="" disabled selected>Select Category</option>
+        <option value="Food">🍽 Food</option>
+        <option value="Travel">✈️ Travel</option>
+        <option value="Shopping">🛍 Shopping</option>
+        <option value="Others">📌 Others</option>
+      </select>
+      <button onclick="addExpense()">Add Expense</button>
+      <ul id="expenseList"></ul>
+    </section>
+
+    <!-- Total Expenses Card -->
+    <section class="card">
+      <h2>Group Summary</h2>
+      <p id="totalSpent">Total Spent: ₹0</p>
+      <p id="perPersonShare">Per Person Share: ₹0</p>
+    </section>
+
+    <!-- Balance Sheet -->
+    <section class="card">
+      <h2>Balance Sheet</h2>
+      <div id="balances"></div>
+      <h3>Settlement Summary</h3>
+      <div id="settlement"></div>
+      <button onclick="downloadPDF()">Download PDF</button>
+      <button class="reset" onclick="resetData()">Reset All</button>
+      <button onclick="settleUp()">Settle Up</button>
+    </section>
+
+    <!-- Expense Chart -->
+    <section class="card">
+      <h2>Expense Distribution</h2>
+      <canvas id="expenseChart"></canvas>
+    </section>
+
+    <!-- Category Chart -->
+    <section class="card">
+      <h2>Category Distribution</h2>
+      <canvas id="categoryChart"></canvas>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
